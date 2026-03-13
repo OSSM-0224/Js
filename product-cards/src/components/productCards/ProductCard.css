@@ -1,0 +1,74 @@
+.card{
+  width:270px;
+  padding:20px;
+  border-radius:18px;
+  background:white;
+  text-align:center;
+  box-shadow:0 12px 30px rgba(0,0,0,0.12);
+  transition:all 0.35s ease;
+  position:relative;
+  overflow:hidden;
+}
+.card:hover{
+  transform:translateY(-12px);
+  box-shadow:0 20px 50px rgba(0,0,0,0.2);
+}
+
+.card img{
+  width:100%;
+  height:200px;
+  object-fit:contain;
+  background:#f8f8f8;
+  border-radius:12px;
+  padding:10px;
+}
+.card h2{
+  font-size:20px;
+  margin-top:12px;
+  color:#222;
+}
+.category{
+  font-size:14px;
+  color:#888;
+  margin-top:5px;
+}
+
+.price{
+  font-size:22px;
+  font-weight:700;
+  color:#27ae60;
+  margin:10px 0;
+}
+
+.rating{
+  color:#f1c40f;
+  font-size:16px;
+  margin-bottom:10px;
+}
+
+button{
+  padding:10px 20px;
+  border:none;
+  background:linear-gradient(135deg,#007bff,#00c6ff);
+  color:white;
+  border-radius:30px;
+  font-weight:600;
+  cursor:pointer;
+  transition:all 0.3s ease;
+}
+
+button:hover{
+  transform:scale(1.07);
+}
+
+.card::before{
+  content:"HOT";
+  position:absolute;
+  top:18px;
+  left:-35px;
+  background:#ff4757;
+  color:white;
+  padding:6px 45px;
+  font-size:12px;
+  transform:rotate(-45deg);
+}
