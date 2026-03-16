@@ -74,8 +74,6 @@ function App() {
 
   return (
     <div>
-      {/* HEADER */}
-
       <div className="header">
         <h1 className="title">Our Products</h1>
 
