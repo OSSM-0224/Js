@@ -6,7 +6,7 @@ function App() {
   const [toggle, setToggle] = useState(false); // false = Register
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
+    <div className="min-h-screen flex items-center justify-center bg-[#f0f2f5]">
       {toggle ? (
         <Login setToggle={setToggle} />
       ) : (
