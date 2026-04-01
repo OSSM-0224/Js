@@ -11,3 +11,6 @@ Features:
 - View sessions
 - Total study duration
 - Priority color coding
+
+CONTEXT API
+
