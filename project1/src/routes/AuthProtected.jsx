@@ -1,0 +1,14 @@
+import { Navigate, Outlet } from "react-router";
+import { useAuth } from "../context/AuthContext";
+
+const AuthProtected = () => {
+  let { loggedInUser } = useAuth();
+
+  if (loggedInUser) {
+    return <Navigate to="/dashboard" />;
+  }
+
+  return <Outlet />;
+};
+
+export default AuthProtected;
