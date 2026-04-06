@@ -1,8 +1,10 @@
 import React from "react";
 import { useNavigate } from "react-router";
+import { useAuth } from "../context/AuthContext";
 
 const ProductCards = ({ products }) => {
   const navigate = useNavigate();
+  const { addToCart } = useAuth();
 
   return (
     <div
@@ -23,7 +25,6 @@ const ProductCards = ({ products }) => {
         />
       </div>
 
-      {/* Body */}
       <div className="p-4">
         <h2
           className="text-[17px] font-semibold leading-snug mb-1 text-white"
@@ -45,7 +46,7 @@ const ProductCards = ({ products }) => {
             )}
           </div>
           <button
-            onClick={(e) => { e.stopPropagation(); /* add to cart logic */ }}
+            onClick={(e) => { e.stopPropagation(); addToCart(products); }}
             className="relative overflow-hidden text-[9px] font-semibold tracking-[0.2em] uppercase
               px-4 py-2 border border-[#cc2222]/50 text-[#cc4444] transition-all duration-300
               group-hover:text-white group-hover:border-[#cc2222]"
