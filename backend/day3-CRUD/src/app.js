@@ -36,7 +36,7 @@ app.patch('/users/update/:index', (req,res) => {
     return res.send("Ok");
 }) 
 
-app.delete('/users/delete/:index', (res, req) => {
+app.delete('/users/delete/:index', (req, res) => {
     let {index} = req.params;
     return res.status(200).json
 })
