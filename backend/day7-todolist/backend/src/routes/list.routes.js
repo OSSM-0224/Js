@@ -3,6 +3,7 @@ const {
   createListController,
   getAllListsController,
   updateListController,
+  deleteListController,
 } = require("../controllers/list.controller");
 
 let router = express.Router();
@@ -10,4 +11,5 @@ let router = express.Router();
 router.post("/create", createListController);
 router.get("/", getAllListsController);
 router.put("/update/:id", updateListController);
-module.export = router;
+router.delete("/delete/:id", deleteListController);
+module.exports = router;

@@ -75,8 +75,29 @@ let updateListController = async (req, res) => {
     });
   }
 };
+
+let deleteListController = async (req, res) => {
+  try {
+    let listId = req.params.id;
+    if (!listId)
+      return res.status(404).json({
+        message: "Id not found please re-enter the id",
+      });
+
+    await ListModel.findByIdAndDelete(listId);
+
+    return res.status(200).json({
+      message: "List Deleted sucessfully",
+    });
+  } catch (error) {
+    return res.status(500).json({
+      message: "Internal server error",
+    });
+  }
+};
 module.exports = {
   createListController,
   getAllListsController,
   updateListController,
+  deleteListController,
 };
