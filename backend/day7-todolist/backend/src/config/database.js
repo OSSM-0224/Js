@@ -1,3 +1,4 @@
+require("dotenv").config();
 let mongoose = require ( "mongoose");
 
 
@@ -7,7 +8,6 @@ let connectDb = async () => {
         console.log("mongodb connected")
     } catch (error) {
         console.log("Error in the connecting MONGODB",error);
-        
     }
 }
 

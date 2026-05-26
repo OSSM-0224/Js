@@ -1,0 +1,14 @@
+# environment variables
+.env
+.env.*
+
+# config files (agar tum alag file me credentials rakhte ho)
+config/db.js
+src/config/db.js
+
+# node modules
+node_modules/
+
+# logs
+logs
+*.log
