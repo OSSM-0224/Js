@@ -3,9 +3,11 @@ import NoteModel from "./models/notes.model.js";
 
 const app = express();
 app.use(express.json());
-// @route POST /api/notes
-// @description Create a new note need title and description in the request body
-// @access Public
+/**
+ * @route POST /api/notes
+ * @description Create a new note need title and description in the request body
+ * @access Public
+ * **/
 
 app.post("/api/notes", async (req, res) => {
   const { title, description } = req.body;
@@ -28,9 +30,12 @@ app.post("/api/notes", async (req, res) => {
   const newNote = await NoteModel.create({ title, description });
   return res.json({ message: "Note Created sucessfully", newNote });
 });
-// @route GET /api/get-notes
-// @description Fetching all the notes
-// @access Public
+/**
+ * @route GET /api/get-notes
+ * @description Fetching all the notes
+ * @access Public
+ *  */
+
 app.get("/api/get-notes", async (req, res) => {
   const getNote = await NoteModel.find();
 
@@ -39,9 +44,11 @@ app.get("/api/get-notes", async (req, res) => {
     getNote,
   });
 });
-// @route PATCH /api/update-note/:noteId
-// @description updating a note by id require description in the request body
-// @access Public
+/**
+ * @route PATCH /api/update-note/:noteId
+ * @description updating a note by id require description in the request body
+ * @access Public
+ **/
 app.patch("/api/update-note/:id", async (req, res) => {
   const { id } = req.params;
   const { description } = req.body;
