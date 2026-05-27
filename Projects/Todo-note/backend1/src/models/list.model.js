@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const NoteSchema = new mongoose.Schmea({
+const NoteSchema = new mongoose.Schema({
   title: String,
   description: String,
 });

@@ -1,7 +1,8 @@
 import express from "express";
 import app from "./src/app.js";
+import connectDB from "../backend/src/config/db.js";
 
-app.use(express.json());
+connectDB();
 
 const PORT = 3000;
 app.listen(PORT, () => {
