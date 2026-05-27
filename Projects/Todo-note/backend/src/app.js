@@ -61,9 +61,9 @@ app.patch("/api/update-note/:id", async (req, res) => {
     return res.status(404).json({ error: "Note not found" });
   }
 
-  note.description = description;
-  await note.save();
-  
+  updateNote.description = description;
+  await updateNote.save();
+
   return res.status(200).json({
     message: "Note updated Sucessfully",
     updateNote,
