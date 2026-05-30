@@ -1,0 +1,30 @@
+import ListModel from "../models/list.models";
+import ApiError from "../utils/apiError";
+import ApiResponse from "../utils/apiResponse";
+import asyncHandler from "../utils/asyncHandler";
+/**
+ * @description Create a new note need title and description in the request body
+ * @access Public
+ * **/
+
+const createListController = asyncHandler(async (req, res) => {
+  const { title, description } = req.body;
+
+  if (!title || !description) {
+    throw new ApiError(400, "Title and Description are REQUIRED");
+  }
+  if (title.trim().length < 4) {
+    throw new ApiError(400, "Title has to be till 4 letters");
+  }
+  if (description.trim().length < 10) {
+    throw new ApiError(400, "Description has to be 10 letters long");
+  }
+  const newList = await ListModel.create({
+    title,
+    description,
+  });
+
+  return res
+    .status(201)
+    .json(new ApiResponse("List Created Succesfully", newList));
+});
