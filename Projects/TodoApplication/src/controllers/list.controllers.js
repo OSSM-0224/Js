@@ -1,7 +1,7 @@
-import ListModel from "../models/list.models";
-import ApiError from "../utils/apiError";
-import ApiResponse from "../utils/apiResponse";
-import asyncHandler from "../utils/asyncHandler";
+import ListModel from "../models/list.models.js";
+import ApiError from "../utils/apiError.js";
+import ApiResponse from "../utils/apiResponse.js";
+import asyncHandler from "../utils/asyncHandler.js";
 /**
  * @description Create a new note need title and description in the request body
  * @access Public
@@ -28,3 +28,8 @@ const createListController = asyncHandler(async (req, res) => {
     .status(201)
     .json(new ApiResponse("List Created Succesfully", newList));
 });
+
+const getAllListController = asyncHandler(async (req, res) => {
+    
+})
+export default createListController;

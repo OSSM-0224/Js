@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const ListSchema = new mongoose.Schema(
   {
-    task: {
+    title: {
       type: String,
       trim: true,
       required: true,
@@ -15,8 +15,9 @@ const ListSchema = new mongoose.Schema(
   },
   {
     timestamps: true,
-  },
+  }
 );
 
-const ListModel = mongoose.Schema("List", ListSchema);
+const ListModel = mongoose.model("List", ListSchema);
+
 export default ListModel;
