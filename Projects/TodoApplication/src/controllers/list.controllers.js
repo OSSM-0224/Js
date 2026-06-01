@@ -6,7 +6,6 @@ import asyncHandler from "../utils/asyncHandler.js";
  * @description Create a new note need title and description in the request body
  * @access Public
  * **/
-
 const createListController = asyncHandler(async (req, res) => {
   const { title, description } = req.body;
 
@@ -30,6 +29,12 @@ const createListController = asyncHandler(async (req, res) => {
 });
 
 const getAllListController = asyncHandler(async (req, res) => {
-    
-})
-export default createListController;
+  const lists = await ListModel.find();
+
+  return res
+    .status(200)
+    .json(new ApiResponse("Lists fetched Sucessfully", lists));
+});
+
+
+export { createListController, getAllListController };
