@@ -1,0 +1,5 @@
+Rooms in server means it helps the user to GET TOGETHER and hold them together 
+socket.join(room): jo hai vo na room ko bhi join karvati bhi hai and vo room generate bhi kartva ti hai
+we need to create a scoket.io dono me ROOMS ka hi use hoga 
+1. one to on chat
+2. group chat 

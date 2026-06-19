@@ -1,10 +1,12 @@
-import app from "./src/app.js";
-import connectDB from "./src/config/db.js";
+import cerateApp from "./src/app.js";
 
-connectDB();
-
+const app = cerateApp();
 const PORT = 3000;
 
-app.listen(PORT, () => {
-  console.log(`Server is running on PORT ${PORT}`);
-});
+function startServer() {
+  app.listen(PORT, () => {
+    console.log(`Server Running on port ${PORT}`);
+  });
+}
+
+startServer();
