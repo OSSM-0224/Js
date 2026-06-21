@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useMemo, useState } from "react";
+import { createContext, useContext, useState } from "react";
 import { loginUser, registerUser } from "./auth.api";
 
 const AuthContext = createContext(null);
@@ -12,17 +12,10 @@ const getStoredUser = () => {
   }
 };
 
-export const AuthProvider = ({ children }) => {
+const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(getStoredUser());
   const [loading, setLoading] = useState(false);
   const [authError, setAuthError] = useState("");
-
-  useEffect(() => {
-    const storedUser = getStoredUser();
-    if (storedUser) {
-      setUser(storedUser);
-    }
-  }, []);
 
   const saveUser = (userData) => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(userData));
@@ -68,18 +61,15 @@ export const AuthProvider = ({ children }) => {
     setUser(null);
   };
 
-  const value = useMemo(
-    () => ({
-      user,
-      loading,
-      authError,
-      isAuthenticated: Boolean(user),
-      login,
-      register,
-      logout,
-    }),
-    [user, loading, authError],
-  );
+  const value = {
+    user,
+    loading,
+    authError,
+    isAuthenticated: Boolean(user),
+    login,
+    register,
+    logout,
+  };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
@@ -91,3 +81,5 @@ export const useAuth = () => {
   }
   return context;
 };
+
+export default AuthProvider;
