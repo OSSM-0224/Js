@@ -3,7 +3,7 @@ import Landing from "../features/home/pages/Landing";
 import Home from "../features/home/pages/Home";
 import Login from "../features/auth/Login";
 import Register from "../features/auth/Register";
-import Analytics from "../features/analytics/Analytics";
+import Analytics from "../pages/analytics/Analytics";
 
 const router = createBrowserRouter([
   {
