@@ -1,12 +1,9 @@
 import { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useHome } from "../hooks/useHome";
-import { useAuth } from "../../auth/AuthProvider";
 
 const Home = () => {
   const { username } = useParams();
-  const navigate = useNavigate();
-  const { user } = useAuth();
   const { fetchLinks, handleLinkClick } = useHome();
   const [links, setLinks] = useState([]);
 
@@ -18,7 +15,7 @@ const Home = () => {
       .catch((error) => {
         console.error(error);
       });
-  }, []);
+  }, [fetchLinks, username]);
 
   const hasLinks = links.length > 0;
 
