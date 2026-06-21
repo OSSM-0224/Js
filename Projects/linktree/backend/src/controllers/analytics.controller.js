@@ -1,18 +1,16 @@
 import linkModel from '../models/link.model.js';
 import userModel from '../models/user.model.js';
 
-const toLocalDateKey = (value) => {
+const toUTCDateKey = (value) => {
   const date = new Date(value);
-  const localDate = new Date(date.getTime() - date.getTimezoneOffset() * 60000);
-  return localDate.toISOString().slice(0, 10);
+  return date.toISOString().slice(0, 10); // use UTC date key for consistency
 };
 
 const createDateRange = (start, end) => {
   const result = [];
-  const current = new Date(start);
-  current.setHours(0, 0, 0, 0);
-  const finish = new Date(end);
-  finish.setHours(0, 0, 0, 0);
+  // normalize to UTC midnight for start/end
+  const current = new Date(Date.UTC(start.getUTCFullYear(), start.getUTCMonth(), start.getUTCDate()));
+  const finish = new Date(Date.UTC(end.getUTCFullYear(), end.getUTCMonth(), end.getUTCDate()));
 
   while (current <= finish) {
     result.push({
@@ -20,7 +18,7 @@ const createDateRange = (start, end) => {
       clicks: 0,
       newLinks: 0,
     });
-    current.setDate(current.getDate() + 1);
+    current.setUTCDate(current.getUTCDate() + 1);
   }
 
   return result;
@@ -32,18 +30,19 @@ const getDateLabel = (dateString) => {
 
 const getRangeBounds = (range, startDate, endDate) => {
   const end = endDate ? new Date(endDate) : new Date();
-  end.setHours(23, 59, 59, 999);
+  // set to UTC end of day
+  end.setUTCHours(23, 59, 59, 999);
 
   if (startDate) {
     const start = new Date(startDate);
-    start.setHours(0, 0, 0, 0);
+    start.setUTCHours(0, 0, 0, 0);
     return { start, end };
   }
 
   const days = Number(range) || 7;
   const start = new Date(end);
-  start.setDate(end.getDate() - (days - 1));
-  start.setHours(0, 0, 0, 0);
+  start.setUTCDate(end.getUTCDate() - (days - 1));
+  start.setUTCHours(0, 0, 0, 0);
 
   return { start, end };
 };
@@ -53,14 +52,15 @@ const countClickEventsByDay = (links, start, end) => {
   const dateIndex = Object.fromEntries(days.map((item, index) => [item.date, index]));
 
   links.forEach((link) => {
-    const createdKey = toLocalDateKey(link.createdAt);
+    // use UTC date keys for createdAt
+    const createdKey = toUTCDateKey(link.createdAt);
     if (dateIndex[createdKey] !== undefined) {
       days[dateIndex[createdKey]].newLinks += 1;
     }
 
     const events = Array.isArray(link.clickEvents) ? link.clickEvents : [];
     events.forEach((event) => {
-      const eventDate = toLocalDateKey(event.timestamp || event);
+      const eventDate = toUTCDateKey(event.timestamp || event);
       if (dateIndex[eventDate] !== undefined) {
         days[dateIndex[eventDate]].clicks += 1;
       }
