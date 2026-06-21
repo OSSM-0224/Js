@@ -14,14 +14,26 @@ const linkSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    icon: {
+        type: String,
+        default: '',
+    },
+    category: {
+        type: String,
+        default: '',
+    },
     clicks: {
         type: Number,
         default: 0,
     },
-    clickEvents: {
-        type: [Date],
-        default: [],
-    },
+    clickEvents: [
+        {
+            timestamp: {
+                type: Date,
+                default: Date.now,
+            },
+        },
+    ],
 }, { timestamps: true });
 
 const Link = mongoose.model('Link', linkSchema);
